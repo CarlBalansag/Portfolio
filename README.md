@@ -1,16 +1,17 @@
 # Carl Balansag - Portfolio
 
-A modern, interactive portfolio website built with Next.js, React, TypeScript, and Tailwind CSS. Features particle animations inspired by soulwire.co.uk, smooth page transitions, and a responsive dark theme.
+A minimalist, artistic portfolio website built with Next.js, React, TypeScript, and Tailwind CSS. Features sophisticated generative art and particle animations inspired by [soulwire.co.uk](https://soulwire.co.uk/), with an emphasis on creative coding and interactive design.
 
 ## Features
 
-- ✨ Interactive particle animation background
-- 🎨 Smooth animations and transitions with Framer Motion
-- 📱 Fully responsive design
-- 🌙 Dark theme
-- ⚡ Built with Next.js 15 for optimal performance
-- 🎯 TypeScript for type safety
-- 💅 Styled with Tailwind CSS
+- 🎨 **Generative Art Canvas** - Flow field-based particle system with organic movement
+- ✨ **Interactive Animation** - Particles respond to mouse movement and clicks
+- 🌊 **Smooth Transitions** - Elegant page animations with Framer Motion
+- 🎯 **Minimalist Design** - Clean typography and layout that lets the animation shine
+- 📱 **Fully Responsive** - Optimized for all screen sizes
+- 🌙 **Dark Theme** - Sophisticated black background with cyan accents
+- ⚡ **Performance** - Built with Next.js 15 for optimal performance
+- 💻 **TypeScript** - Full type safety throughout the codebase
 
 ## Getting Started
 
@@ -46,28 +47,42 @@ npm run dev
 - `npm run start` - Start the production server
 - `npm run lint` - Run ESLint
 
+## Design Philosophy
+
+This portfolio embraces a minimalist aesthetic inspired by creative coding portfolios like soulwire.co.uk:
+
+- **Canvas as Hero** - The generative art animation is the centerpiece
+- **Typography** - Clean, light fonts with ample spacing
+- **Interaction** - Subtle, meaningful interactions that enhance the experience
+- **Color** - Monochromatic with cyan accent for focus
+- **White Space** - Strategic use of negative space for breathing room
+
 ## Customization
 
 ### Personal Information
 
-Edit the following files to update your personal information:
+Edit the following files to update your content:
 
-- `components/sections/About.tsx` - Update name, title, bio, and skills
-- `components/sections/Projects.tsx` - Add your own projects
-- `components/sections/Contact.tsx` - Update social links and email
+- `components/sections/Hero.tsx` - Update name, title, and introduction
+- `components/sections/Work.tsx` - Add your projects with descriptions
+- `components/sections/AboutMinimal.tsx` - Update bio and skills
+- `components/sections/ContactMinimal.tsx` - Update social links and contact info
+
+### Animation System
+
+Customize the creative canvas in `components/CreativeCanvas.tsx`:
+
+- **Flow Field** - Adjust resolution and update frequency
+- **Particles** - Modify count, size, lifetime, and colors
+- **Interactions** - Change mouse repulsion/attraction behavior
+- **Visual Style** - Adjust trails, connections, and gradients
+- **Performance** - Tune particle count based on screen size
 
 ### Styling
 
-- `app/globals.css` - Global styles and CSS variables
-- `tailwind.config.ts` - Tailwind CSS configuration
-- Component files - Individual component styling
-
-### Particle Animation
-
-Customize the particle animation in `components/ParticleBackground.tsx`:
-- Adjust particle count, size, and behavior
-- Modify colors and opacity
-- Change interaction effects
+- `app/globals.css` - Global styles, scrollbar, and selection colors
+- Individual component files - Section-specific styling
+- `tailwind.config.ts` - Tailwind configuration
 
 ## Deployment
 
@@ -89,12 +104,13 @@ You can also deploy to:
 
 ## Technologies Used
 
-- **Next.js 15** - React framework
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **Framer Motion** - Animations
-- **Canvas API** - Particle effects
+- **Next.js 15** - React framework with App Router
+- **React 18** - UI library with hooks
+- **TypeScript** - Type safety and better DX
+- **Tailwind CSS** - Utility-first styling
+- **Framer Motion** - Animation library for smooth transitions
+- **Canvas API** - Generative art and particle system
+- **Flow Fields** - Organic particle movement patterns
 
 ## License
 

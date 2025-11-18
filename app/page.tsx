@@ -1,17 +1,19 @@
-import ParticleBackground from '@/components/ParticleBackground';
-import Navigation from '@/components/Navigation';
-import About from '@/components/sections/About';
-import Projects from '@/components/sections/Projects';
-import Contact from '@/components/sections/Contact';
+import CreativeCanvas from '@/components/CreativeCanvas';
+import MinimalNavigation from '@/components/MinimalNavigation';
+import Hero from '@/components/sections/Hero';
+import Work from '@/components/sections/Work';
+import AboutMinimal from '@/components/sections/AboutMinimal';
+import ContactMinimal from '@/components/sections/ContactMinimal';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen">
-      <ParticleBackground />
-      <Navigation />
-      <About />
-      <Projects />
-      <Contact />
+    <main className="relative min-h-screen bg-[#0a0a0a]">
+      <CreativeCanvas />
+      <MinimalNavigation />
+      <Hero />
+      <Work />
+      <AboutMinimal />
+      <ContactMinimal />
     </main>
   );
 }

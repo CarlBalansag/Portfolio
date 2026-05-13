@@ -254,6 +254,10 @@ const TerminalTextAnimation = () => {
       { title: "Student Assistant", company: "California Air Resource Board", date: "Jul 2025 – Dec 2025", bullets: ["Process air quality and vehicle regulation citations, ensuring accurate documentation.", "Documented processes, tracked incidents, and updated system records for accuracy.", "Assist in the preparation of internal reports by analyzing citation and complaint data."] },
       { title: "Student Assistant", company: "California Transportation", date: "Dec 2025 – Present", bullets: ["Analyzed and coded traffic collision reports into standardized database format for district-wide safety analysis", "Developed automated workflows in Excel and PowerAutomate to streamline data entry and reporting processes", "Processed and validated large datasets from multiple sources, ensuring data integrity and consistency across databases"] },
     ],
+    education: [
+      { institution: "Los Rios Community College", date: "August 2023 - June 2026", degree: "Associates of Science, Computer Science | GPA 3.8", location: "Sacramento, CA" },
+      { institution: "California State University, Sacramento", date: "Expected June 2028", degree: "Bachelor of Science, Computer Science", location: "Sacramento, CA" }
+    ],
     contacts: [
       { type: "EMAIL", value: "Carl.C.Balansag@gmail.com", href: "mailto:Carl.C.Balansag@gmail.com" },
       { type: "LINKEDIN", value: "linkedin.com/in/carl-balansag", href: "https://www.linkedin.com/in/carl-balansag-a96b30227/" },
@@ -281,6 +285,8 @@ const TerminalTextAnimation = () => {
   const [displayedSkills, setDisplayedSkills] = useState<string[]>([]);
   const [visibleSkillCount, setVisibleSkillCount] = useState(0);
   const [showLabs, setShowLabs] = useState(false);
+  const [showEducation, setShowEducation] = useState(false);
+  const [displayedEducation, setDisplayedEducation] = useState<{ institution: string; date: string; degree: string; location: string }[]>([]);
   const [showExperience, setShowExperience] = useState(false);
   const [showContacts, setShowContacts] = useState(false);
   const [displayedContacts, setDisplayedContacts] = useState<string[]>([]);
@@ -369,14 +375,33 @@ const TerminalTextAnimation = () => {
     }, 2000));
 
     timeouts.push(setTimeout(() => setShowLabs(true), 2800));
-    timeouts.push(setTimeout(() => setShowExperience(true), 3400));
+    
+    timeouts.push(setTimeout(() => {
+      setShowEducation(true);
+      setDisplayedEducation(content.education.map(() => ({ institution: '', date: '', degree: '', location: '' })));
+      content.education.forEach((edu, index) => {
+        timeouts.push(setTimeout(() => {
+          cleanups.push(scrambleText(edu.institution, (text) => {
+            setDisplayedEducation(prev => { const u = [...prev]; u[index] = { ...u[index], institution: text }; return u; });
+          }, 1.0));
+          cleanups.push(scrambleText(edu.date, (text) => {
+            setDisplayedEducation(prev => { const u = [...prev]; u[index] = { ...u[index], date: text }; return u; });
+          }, 1.0));
+          cleanups.push(scrambleText(edu.degree, (text) => {
+            setDisplayedEducation(prev => { const u = [...prev]; u[index] = { ...u[index], degree: text }; return u; });
+          }, 1.0));
+        }, index * 200));
+      });
+    }, 3400));
+
+    timeouts.push(setTimeout(() => setShowExperience(true), 4200));
 
     timeouts.push(setTimeout(() => {
       setDisplayedExperience(content.experience.map(exp => ({ title: exp.title, company: exp.company, date: exp.date, bullets: exp.bullets })));
       const init: { [k: number]: { title: string; company: string; date: string; bullets: string[] } } = {};
       content.experience.forEach((exp, idx) => { init[idx] = { title: '', company: '', date: '', bullets: exp.bullets.map(() => '') }; });
       setAnimatedExpText(init);
-    }, 3800));
+    }, 4600));
 
     content.labs.forEach((lab, index) => {
       timeouts.push(setTimeout(() => {
@@ -638,6 +663,30 @@ const TerminalTextAnimation = () => {
                   </div>
                 );
               })}
+            </div>
+          </motion.div>
+        )}
+
+        {/* ── EDUCATION ────────────────────────────────────────── */}
+        {showEducation && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}
+            style={{ marginBottom: '48px' }}
+          >
+            <SectionLabel label="EDUCATION" />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', paddingLeft: '4px' }}>
+              {displayedEducation.map((edu, index) => (
+                <div key={index} style={{ borderLeft: '2px solid rgba(34,211,238,0.2)', paddingLeft: '16px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4px' }}>
+                    <div style={{ fontSize: '15px', color: '#f1f5f9' }}>
+                      {edu.institution && <GlitchText speed={0.5}>{edu.institution}</GlitchText>}
+                    </div>
+                    <span style={{ fontSize: '12px', color: '#64748b' }}>{edu.date}</span>
+                  </div>
+                  <div style={{ fontSize: '13px', color: '#22d3ee', marginBottom: '2px' }}>{edu.degree}</div>
+                  <div style={{ fontSize: '11px', color: '#475569', letterSpacing: '1px' }}>{edu.location}</div>
+                </div>
+              ))}
             </div>
           </motion.div>
         )}
